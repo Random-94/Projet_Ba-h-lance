@@ -13,7 +13,7 @@ public class Ball_Controls : MonoBehaviour
     private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
-    private Vector2 Resolution;
+    private Vector2 Resolution; //resolution de l'ecran
 
 
 
@@ -62,7 +62,7 @@ public class Ball_Controls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(Screen.currentResolution);
+        print(Resolution);
         // trouver comment prendre la resolution de l'ecran
     }
 
