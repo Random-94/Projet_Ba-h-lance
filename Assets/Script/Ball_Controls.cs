@@ -9,12 +9,14 @@ public class Ball_Controls : MonoBehaviour
 
     private Rigidbody myRB ;
     private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
-    private Vector3 MousePosition ; //la position de la souris dans l'espace
+    
     private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
-    private Vector2 Resolution; //resolution de l'ecran
+   
+    private Vector2 Resolution;
 
+    private Resolution Actual_Resolution;
 
 
     private void OnEnable()
@@ -23,7 +25,7 @@ public class Ball_Controls : MonoBehaviour
         controls.Enable();
 
         controls.Ball.Aim.performed += OnAimPerformed;
-        //Controls.Ball.Aim.canceled += OnAimCanceled;
+        
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
 
@@ -32,16 +34,20 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnAimPerformed(InputAction.CallbackContext obj)
     {
-        //lookDirection = direction de la camera avec notre curseur -> on recupere les infos de la cam pour l’associer a ma souris
+        
         a = obj.ReadValue<Vector2>();
+
+        
         a /= Resolution;
         Debug.Log(a);
-        
+
+        // regarder pour le clamp juste apres avoir lu la valeur  -> pour le "a"
+
     }
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
-        //MousePosition
+        
 
     }
 
@@ -62,8 +68,15 @@ public class Ball_Controls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(Resolution);
-        // trouver comment prendre la resolution de l'ecran
+        Resolution = new Vector2(Screen.width, Screen.height);
+        Debug.Log(Resolution);
+
+        /*Actual_Resolution = Screen.currentResolution;
+        Debug.Log(Actual_Resolution.width, Actual_Resolution.height);
+        Debug.Log(Screen.currentResolution.width, )*/
+
+
+
     }
 
     // Update is called once per frame
