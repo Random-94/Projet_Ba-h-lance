@@ -25,7 +25,7 @@ public class Ball_Controls : MonoBehaviour
         controls.Enable();
 
         controls.Ball.Aim.performed += OnAimPerformed;
-        
+        controls.Ball.Aim2.performed += OnAim2Performed;
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
 
@@ -42,6 +42,13 @@ public class Ball_Controls : MonoBehaviour
         Debug.Log(a);
 
         // regarder pour le clamp juste apres avoir lu la valeur  -> pour le "a"
+
+    }
+
+    private void OnAim2Performed(InputAction.CallbackContext obj)
+    {
+
+       
 
     }
 
