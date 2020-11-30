@@ -24,8 +24,8 @@ public class Ball_Controls : MonoBehaviour
         controls = new Controls();
         controls.Enable();
 
-        controls.Ball.Aim.performed += OnAimPerformed;
-        controls.Ball.Aim2.performed += OnAim2Performed;
+        controls.Ball.Aim.performed += OnAimPerformed; //position souris
+        controls.Ball.Aim2.performed += OnAim2Performed;//delta de la souris
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
 
