@@ -53,13 +53,26 @@ public class Ball_Controls : MonoBehaviour
     {
         IsPressed = true;
 
-        
+        if (IsMove == false)
+        {
+            // the cube is going to move upwards in 10 units per second
+            myRB.velocity = new Vector3(0, 10, 0);
+            IsMove = true;
+            Debug.Log("tu tir");
+        }
+
         //Debug.Log(a);
     }
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
     {
-        
+        if (IsPressed = true)
+        {
+            // the cube is going to move upwards in 10 units per second
+            myRB.velocity = new Vector3(0, 10, 0);
+            IsMove = true;
+            Debug.Log("tu tir");
+        }
 
 
 
@@ -92,13 +105,7 @@ public class Ball_Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsPressed)
-        {
-            // the cube is going to move upwards in 10 units per second
-            myRB.velocity = new Vector3(0, 10, 0);
-            IsMove = true;
-            Debug.Log("tu tir");
-        }
+        
     }
 
     
