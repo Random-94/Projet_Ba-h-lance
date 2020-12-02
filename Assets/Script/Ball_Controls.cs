@@ -13,7 +13,8 @@ public class Ball_Controls : MonoBehaviour
     private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
-   
+    private Vector2 b; // le point "b" correspond au relachement du clic
+
     private Vector2 Resolution;
 
     private Resolution Actual_Resolution;
@@ -25,7 +26,7 @@ public class Ball_Controls : MonoBehaviour
         controls.Enable();
 
         controls.Ball.Aim.performed += OnAimPerformed; //position souris
-        controls.Ball.Aim2.performed += OnAim2Performed;//delta de la souris
+        controls.Ball.Aim2.performed += OnAim2Performed;//delta de la souris pour la cam
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
 
@@ -36,30 +37,29 @@ public class Ball_Controls : MonoBehaviour
     {
         
         a = obj.ReadValue<Vector2>();
-
-        
         a /= Resolution;
-        Debug.Log(a);
-
+        //Debug.Log(a);
         // regarder pour le clamp juste apres avoir lu la valeur  -> pour le "a"
 
+        b = obj.ReadValue<Vector2>();
+        b /= Resolution;
     }
 
     private void OnAim2Performed(InputAction.CallbackContext obj)
     {
-
-       
-
     }
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
-        
-
     }
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
     {
+
+        
+        
+        Debug.Log(b);
+        
         /*Une fois le clic gauche relaché et avoir fait une distance entre le point A et le point(le relâchement du clic) -> on calcul la distance des deux points pour 
          * déterminer la puissance du tir  calcul de flore(exemple b - a ; récupérer la taille du vecteur)
 	    La force s’applique sur la balle et part dans la direction choisi
@@ -76,7 +76,7 @@ public class Ball_Controls : MonoBehaviour
     void Start()
     {
         Resolution = new Vector2(Screen.width, Screen.height);
-        Debug.Log(Resolution);
+        //Debug.Log(Resolution);
 
         /*Actual_Resolution = Screen.currentResolution;
         Debug.Log(Actual_Resolution.width, Actual_Resolution.height);
