@@ -9,16 +9,17 @@ public class Ball_Controls : MonoBehaviour
 
     private Rigidbody myRB ;
     private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
-    
+
+    public float Force = 1.0f;
+
     private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
+    private bool IsPressed = false; //savoir si on a appuyer
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
-    private Vector2 b; // le point "b" correspond au relachement du clic
-
-    private Vector2 Resolution;
-
-    private Resolution Actual_Resolution;
-
+    private Vector2 Resolution; //correspond a la variable qui va contenir la resolution de l'ecran
+    
+    
+ 
 
     private void OnEnable()
     {
@@ -29,20 +30,19 @@ public class Ball_Controls : MonoBehaviour
         controls.Ball.Aim2.performed += OnAim2Performed;//delta de la souris pour la cam
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
-
         
     }
 
     private void OnAimPerformed(InputAction.CallbackContext obj)
     {
         
-        a = obj.ReadValue<Vector2>();
+        a = obj.ReadValue<Vector2>(); // permet de lire la valeur de "a" 
         a /= Resolution;
+        a.x = Mathf.Clamp(a.x, 0, 1);
+        a.y = Mathf.Clamp(a.y, 0, 1);
         //Debug.Log(a);
         // regarder pour le clamp juste apres avoir lu la valeur  -> pour le "a"
-
-        b = obj.ReadValue<Vector2>();
-        b /= Resolution;
+        
     }
 
     private void OnAim2Performed(InputAction.CallbackContext obj)
@@ -51,15 +51,20 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
+        IsPressed = true;
+
+        
+        //Debug.Log(a);
     }
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
     {
+        
 
-        
-        
-        Debug.Log(b);
-        
+
+
+        //Debug.Log(a);
+
         /*Une fois le clic gauche relaché et avoir fait une distance entre le point A et le point(le relâchement du clic) -> on calcul la distance des deux points pour 
          * déterminer la puissance du tir  calcul de flore(exemple b - a ; récupérer la taille du vecteur)
 	    La force s’applique sur la balle et part dans la direction choisi
@@ -78,9 +83,7 @@ public class Ball_Controls : MonoBehaviour
         Resolution = new Vector2(Screen.width, Screen.height);
         //Debug.Log(Resolution);
 
-        /*Actual_Resolution = Screen.currentResolution;
-        Debug.Log(Actual_Resolution.width, Actual_Resolution.height);
-        Debug.Log(Screen.currentResolution.width, )*/
+        
 
 
 
@@ -89,7 +92,13 @@ public class Ball_Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsPressed)
+        {
+            // the cube is going to move upwards in 10 units per second
+            myRB.velocity = new Vector3(0, 10, 0);
+            IsMove = true;
+            Debug.Log("tu tir");
+        }
     }
 
     
