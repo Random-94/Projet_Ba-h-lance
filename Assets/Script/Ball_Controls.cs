@@ -53,13 +53,7 @@ public class Ball_Controls : MonoBehaviour
     {
         IsPressed = true;
 
-        if (IsMove == false)
-        {
-            // the cube is going to move upwards in 10 units per second
-            myRB.velocity = new Vector3(0, 10, 0);
-            IsMove = true;
-            Debug.Log("tu tir");
-        }
+        
 
         //Debug.Log(a);
     }
@@ -69,7 +63,7 @@ public class Ball_Controls : MonoBehaviour
         if (IsPressed = true)
         {
             // the cube is going to move upwards in 10 units per second
-            myRB.velocity = new Vector3(0, 10, 0);
+            myRB.velocity = new Vector3(1, 0, 2);
             IsMove = true;
             Debug.Log("tu tir");
         }
@@ -95,8 +89,8 @@ public class Ball_Controls : MonoBehaviour
     {
         Resolution = new Vector2(Screen.width, Screen.height);
         //Debug.Log(Resolution);
+        myRB = GetComponent<Rigidbody>();
 
-        
 
 
 
