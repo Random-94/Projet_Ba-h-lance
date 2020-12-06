@@ -60,26 +60,39 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
     {
-        if (IsPressed = true)
+        /*if (IsPressed = true)
         {
             // the cube is going to move upwards in 10 units per second
-            myRB.velocity = new Vector3(1, 0, 2);
+            //myRB.velocity = new Vector3(1, 0, 2);
+            myRB.velocity = transform.forward;
             IsMove = true;
             Debug.Log("tu tir");
+        }*/
+
+        if (IsPressed = true)
+        {
+            var camForward = Camera.main.transform.forward;
+            var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
+            myRB.velocity = camDir;
+            
         }
 
-
-
-        //Debug.Log(a);
-
-        /*Une fois le clic gauche relaché et avoir fait une distance entre le point A et le point(le relâchement du clic) -> on calcul la distance des deux points pour 
-         * déterminer la puissance du tir  calcul de flore(exemple b - a ; récupérer la taille du vecteur)
-	    La force s’applique sur la balle et part dans la direction choisi
-        lorsque que IsMove = false(ca veut dire que la balle est a l’arret) on peut tirer, sinon lorsque IsMove = true , il est impossible de tirer et mon curseur ne va
-        réapparaitre que quand il passe a false( = !myRB.velocity. ? > 0.1 ) a chercher !!*/
-
+        /*
+         var camForward = Camera.main.transform.forward;
+         var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
+ 
+         var angle = Mathf.Sign(camDir.x) * Vector3.Angle(camDir.normalized, Vector3.forward);
+         var quat = Quaternion.Euler(0f, angle, 0f) * movement;
+ 
+         movement = quat;
+        
+         
+         
+         */
 
     }
+
+
 
 
 
