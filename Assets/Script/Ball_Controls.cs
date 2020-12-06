@@ -8,9 +8,10 @@ public class Ball_Controls : MonoBehaviour
     [SerializeField] private float Gravity;
 
     private Rigidbody myRB ;
-    private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
+    //private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
 
-    public float Force = 1.0f;
+    [SerializeField] float Force;
+    [SerializeField] float Force1;
 
     private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
     private bool IsPressed = false; //savoir si on a appuyer
@@ -73,8 +74,13 @@ public class Ball_Controls : MonoBehaviour
         {
             var camForward = Camera.main.transform.forward;
             var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
-            myRB.velocity = camDir;
+            myRB.velocity = camDir * Force;
             
+                if(myRB.velocity.magnitude < Force1)
+                {
+                   Slow();
+                }
+            IsMove = true;
         }
 
         /*
@@ -92,9 +98,15 @@ public class Ball_Controls : MonoBehaviour
 
     }
 
+    /*private void IsMove() // arreter la camera pendant un tir
+    {
 
+    }*/
 
-
+    private void Slow() // ralentir le mouvement de la balle apres le tir
+    {
+        myRB.velocity = Vector3.zero;
+    }
 
 
     // Start is called before the first frame update
