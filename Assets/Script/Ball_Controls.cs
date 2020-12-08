@@ -14,7 +14,7 @@ public class Ball_Controls : MonoBehaviour
     [SerializeField] float Force1;
    
 
-    public bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
+    private bool IsMove; //savoir si la balle est à l’arrêt ou pas
     private bool IsPressed = false; //savoir si on a appuyer
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
@@ -49,6 +49,7 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnAim2Performed(InputAction.CallbackContext obj)
     {
+
     }
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
@@ -73,15 +74,23 @@ public class Ball_Controls : MonoBehaviour
 
         if (IsPressed = true)
         {
+           /* if(IsMove = false)
+            {
+                var camForward = Camera.main.transform.forward;
+                var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
+                myRB.velocity = camDir * Force;
+                IsMove = true;
+            }*/
             var camForward = Camera.main.transform.forward;
             var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
             myRB.velocity = camDir * Force;
             
-                if(myRB.velocity.magnitude < Force1)
+            if (myRB.velocity.magnitude < Force1)
                 {
                    Slow();
+                   
                 }
-            IsMove = true;
+            
             
             /*if(IsMove = true)
             {
@@ -112,6 +121,7 @@ public class Ball_Controls : MonoBehaviour
     private void Slow() // ralentir le mouvement de la balle apres le tir
     {
         myRB.velocity = Vector3.zero;
+        IsMove = false;
     }
 
 
@@ -121,14 +131,14 @@ public class Ball_Controls : MonoBehaviour
         Resolution = new Vector2(Screen.width, Screen.height);
         //Debug.Log(Resolution);
         myRB = GetComponent<Rigidbody>();
-
+        
 
 
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
     }

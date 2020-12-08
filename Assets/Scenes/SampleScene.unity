@@ -1856,8 +1856,7 @@ MonoBehaviour:
   Gravity: -9.81
   myRB: {fileID: 1135720608}
   Force: 20
-  Force1: 0
-  IsMove: 0
+  Force1: 3
 --- !u!1 &1276832788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,7 +2410,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828213309}
-  m_LocalRotation: {x: 0.107409626, y: 0.000000028704454, z: -0.0000000031010747, w: 0.9942149}
+  m_LocalRotation: {x: 0.107409626, y: 0.000000028704457, z: -0.0000000031010752, w: 0.9942149}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
