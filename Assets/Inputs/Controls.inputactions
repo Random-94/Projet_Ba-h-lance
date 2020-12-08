@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Aim2",
+                    "name": "Delta",
                     "type": "Value",
                     "id": "9fb28fea-5559-4557-ae86-dbb657a0e8f7",
                     "expectedControlType": "Vector2",
@@ -60,7 +60,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim2",
+                    "action": "Delta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

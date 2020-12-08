@@ -29,7 +29,7 @@ public class Ball_Controls : MonoBehaviour
         controls.Enable();
 
         controls.Ball.Aim.performed += OnAimPerformed; //position souris
-        controls.Ball.Aim2.performed += OnAim2Performed;//delta de la souris pour la cam
+        
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
         
@@ -47,81 +47,34 @@ public class Ball_Controls : MonoBehaviour
         
     }
 
-    private void OnAim2Performed(InputAction.CallbackContext obj)
-    {
-
-    }
+    
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
-        IsPressed = true;
-
         
+        //mettre valeur de speed camera x et y  a zero
+        //recuperer la position de la souris
 
         //Debug.Log(a);
     }
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
     {
-        /*if (IsPressed = true)
-        {
-            // the cube is going to move upwards in 10 units per second
-            //myRB.velocity = new Vector3(1, 0, 2);
-            myRB.velocity = transform.forward;
-            IsMove = true;
-            Debug.Log("tu tir");
-        }*/
-
-        if (IsPressed = true)
-        {
-           /* if(IsMove = false)
-            {
-                var camForward = Camera.main.transform.forward;
-                var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
-                myRB.velocity = camDir * Force;
-                IsMove = true;
-            }*/
+        //recuperer la position de la souris 
+        //ensuite, creer le vecteur allant de la premiere position de la souris a celle recupere a la ligne precedente
+        //"force" sera la magnitude du vecteur recuperé avant
             var camForward = Camera.main.transform.forward;
             var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
-            myRB.velocity = camDir * Force;
-            
-            if (myRB.velocity.magnitude < Force1)
-                {
-                   Slow();
-                   
-                }
+            myRB.AddForce(camDir * Force, ForceMode.Impulse);
+            IsMove = true;
+           
             
             
-            /*if(IsMove = true)
-            {
-                camForward = Camera.main.transform.disabled;
-            }*/
-        }
-
-        /*
-         var camForward = Camera.main.transform.forward;
-         var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
- 
-         var angle = Mathf.Sign(camDir.x) * Vector3.Angle(camDir.normalized, Vector3.forward);
-         var quat = Quaternion.Euler(0f, angle, 0f) * movement;
- 
-         movement = quat;
+           //remettre valeur de speed camera de x et y a la normal 
         
-         
-         
-         */
 
-    }
+        
 
-    /*private void IsMove() // arreter la camera pendant un tir
-    {
-
-    }*/
-
-    private void Slow() // ralentir le mouvement de la balle apres le tir
-    {
-        myRB.velocity = Vector3.zero;
-        IsMove = false;
     }
 
 
@@ -140,7 +93,10 @@ public class Ball_Controls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        if(myRB.velocity.magnitude <= 0.1f)
+        {
+            IsMove = false;
+        }
     }
 
    
