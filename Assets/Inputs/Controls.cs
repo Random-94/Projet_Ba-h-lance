@@ -35,7 +35,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Aim2"",
+                    ""name"": ""Delta"",
                     ""type"": ""Value"",
                     ""id"": ""9fb28fea-5559-4557-ae86-dbb657a0e8f7"",
                     ""expectedControlType"": ""Vector2"",
@@ -73,7 +73,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim2"",
+                    ""action"": ""Delta"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -86,7 +86,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Ball = asset.FindActionMap("Ball", throwIfNotFound: true);
         m_Ball_Aim = m_Ball.FindAction("Aim", throwIfNotFound: true);
         m_Ball_Shoot = m_Ball.FindAction("Shoot", throwIfNotFound: true);
-        m_Ball_Aim2 = m_Ball.FindAction("Aim2", throwIfNotFound: true);
+        m_Ball_Delta = m_Ball.FindAction("Delta", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -138,14 +138,14 @@ public class @Controls : IInputActionCollection, IDisposable
     private IBallActions m_BallActionsCallbackInterface;
     private readonly InputAction m_Ball_Aim;
     private readonly InputAction m_Ball_Shoot;
-    private readonly InputAction m_Ball_Aim2;
+    private readonly InputAction m_Ball_Delta;
     public struct BallActions
     {
         private @Controls m_Wrapper;
         public BallActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Aim => m_Wrapper.m_Ball_Aim;
         public InputAction @Shoot => m_Wrapper.m_Ball_Shoot;
-        public InputAction @Aim2 => m_Wrapper.m_Ball_Aim2;
+        public InputAction @Delta => m_Wrapper.m_Ball_Delta;
         public InputActionMap Get() { return m_Wrapper.m_Ball; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -161,9 +161,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_BallActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnShoot;
-                @Aim2.started -= m_Wrapper.m_BallActionsCallbackInterface.OnAim2;
-                @Aim2.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnAim2;
-                @Aim2.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnAim2;
+                @Delta.started -= m_Wrapper.m_BallActionsCallbackInterface.OnDelta;
+                @Delta.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnDelta;
+                @Delta.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnDelta;
             }
             m_Wrapper.m_BallActionsCallbackInterface = instance;
             if (instance != null)
@@ -174,9 +174,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @Aim2.started += instance.OnAim2;
-                @Aim2.performed += instance.OnAim2;
-                @Aim2.canceled += instance.OnAim2;
+                @Delta.started += instance.OnDelta;
+                @Delta.performed += instance.OnDelta;
+                @Delta.canceled += instance.OnDelta;
             }
         }
     }
@@ -185,6 +185,6 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnAim2(InputAction.CallbackContext context);
+        void OnDelta(InputAction.CallbackContext context);
     }
 }
