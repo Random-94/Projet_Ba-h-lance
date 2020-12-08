@@ -7,11 +7,12 @@ public class Ball_Controls : MonoBehaviour
 {
     [SerializeField] private float Gravity;
 
-    private Rigidbody myRB ;
+    public Rigidbody myRB ;
     //private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
 
     [SerializeField] float Force;
     [SerializeField] float Force1;
+   
 
     private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
     private bool IsPressed = false; //savoir si on a appuyer
@@ -127,5 +128,7 @@ public class Ball_Controls : MonoBehaviour
         
     }
 
-    
+   
+
+
 }
