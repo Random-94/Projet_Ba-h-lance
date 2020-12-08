@@ -14,7 +14,7 @@ public class Ball_Controls : MonoBehaviour
     [SerializeField] float Force1;
    
 
-    private bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
+    public bool IsMove = false; //savoir si la balle est à l’arrêt ou pas
     private bool IsPressed = false; //savoir si on a appuyer
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
@@ -82,6 +82,11 @@ public class Ball_Controls : MonoBehaviour
                    Slow();
                 }
             IsMove = true;
+            
+            /*if(IsMove = true)
+            {
+                camForward = Camera.main.transform.disabled;
+            }*/
         }
 
         /*
