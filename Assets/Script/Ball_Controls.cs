@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class Ball_Controls : MonoBehaviour
 {
     [SerializeField] private float Gravity;
 
     public Rigidbody myRB ;
+    [SerializeField] CinemachineFreeLook Mycam;
+    
     //private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
 
     [SerializeField] float Force;
@@ -19,9 +22,31 @@ public class Ball_Controls : MonoBehaviour
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
     private Vector2 Resolution; //correspond a la variable qui va contenir la resolution de l'ecran
-    
-    
- 
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Resolution = new Vector2(Screen.width, Screen.height);
+        //Debug.Log(Resolution);
+        myRB = GetComponent<Rigidbody>();
+        Mycam = GetComponent<CinemachineFreeLook>();
+
+
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (myRB.velocity.magnitude <= 0.1f)
+        {
+            IsMove = false;
+        }
+
+
+    }
+
 
     private void OnEnable()
     {
@@ -51,11 +76,16 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
+        //if(IsMove == false)
+        //{
+            //Mycam.m_XAxis.m_MaxSpeed = 0;
+            //Mycam.m_YAxis.m_MaxSpeed = 0;
+        //}
         
         //mettre valeur de speed camera x et y  a zero
         //recuperer la position de la souris
 
-        //Debug.Log(a);
+        Debug.Log(a);
     }
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
@@ -67,37 +97,18 @@ public class Ball_Controls : MonoBehaviour
             var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
             myRB.AddForce(camDir * Force, ForceMode.Impulse);
             IsMove = true;
-           
-            
-            
-           //remettre valeur de speed camera de x et y a la normal 
-        
 
-        
+        Debug.Log(a);
 
-    }
+        //remettre valeur de speed camera de x et y a la normal 
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Resolution = new Vector2(Screen.width, Screen.height);
-        //Debug.Log(Resolution);
-        myRB = GetComponent<Rigidbody>();
-        
 
 
 
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if(myRB.velocity.magnitude <= 0.1f)
-        {
-            IsMove = false;
-        }
-    }
+
+  
 
    
 
