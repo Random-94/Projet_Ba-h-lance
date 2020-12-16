@@ -85,6 +85,9 @@ public class Ball_Controls : MonoBehaviour
         //mettre valeur de speed camera x et y  a zero
         //recuperer la position de la souris
 
+
+        //vector faut les multiplier entre eux
+
         Debug.Log(a);
     }
 
