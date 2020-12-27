@@ -30,16 +30,16 @@ public class Ball_Controls : MonoBehaviour
         Resolution = new Vector2(Screen.width, Screen.height);
         //Debug.Log(Resolution);
         myRB = GetComponent<Rigidbody>();
-        Mycam = GetComponent<CinemachineFreeLook>();
+        
 
-
+        //RECUPERER VALEUR DE LA SPEED CAM X,Y ET STOCKER DANS VARIABLES CHACUNES -> a assigner apres 
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (myRB.velocity.magnitude <= 0.1f)
+        if (myRB.velocity.magnitude <= 0f)
         {
             IsMove = false;
         }
@@ -76,11 +76,11 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
-        //if(IsMove == false)
-        //{
-            //Mycam.m_XAxis.m_MaxSpeed = 0;
-            //Mycam.m_YAxis.m_MaxSpeed = 0;
-        //}
+        if(!IsMove)
+        {
+            Mycam.m_XAxis.m_MaxSpeed = 0;
+            Mycam.m_YAxis.m_MaxSpeed = 0;
+        }
         
         //mettre valeur de speed camera x et y  a zero
         //recuperer la position de la souris
@@ -96,10 +96,16 @@ public class Ball_Controls : MonoBehaviour
         //recuperer la position de la souris 
         //ensuite, creer le vecteur allant de la premiere position de la souris a celle recupere a la ligne precedente
         //"force" sera la magnitude du vecteur recuperé avant
-            var camForward = Camera.main.transform.forward;
-            var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
-            myRB.AddForce(camDir * Force, ForceMode.Impulse);
-            IsMove = true;
+        if (!IsMove)
+        { 
+        var camForward = Camera.main.transform.forward;
+        var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
+        myRB.AddForce(camDir * Force, ForceMode.Impulse);
+        IsMove = true;
+        }
+
+        Mycam.m_XAxis.m_MaxSpeed = 300; 
+        Mycam.m_YAxis.m_MaxSpeed = 2;
 
         Debug.Log(a);
 
