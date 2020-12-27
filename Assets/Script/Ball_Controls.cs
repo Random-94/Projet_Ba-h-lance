@@ -39,7 +39,7 @@ public class Ball_Controls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (myRB.velocity.magnitude <= 0f)
+        if (myRB.velocity.magnitude <= 0.1f)
         {
             IsMove = false;
         }
