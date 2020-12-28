@@ -22,6 +22,7 @@ public class Ball_Controls : MonoBehaviour
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
     private Vector2 Resolution; //correspond a la variable qui va contenir la resolution de l'ecran
+    private LineRenderer lr;
 
 
     // Start is called before the first frame update
@@ -68,7 +69,7 @@ public class Ball_Controls : MonoBehaviour
         a.x = Mathf.Clamp(a.x, 0, 1);
         a.y = Mathf.Clamp(a.y, 0, 1);
         //Debug.Log(a);
-        // regarder pour le clamp juste apres avoir lu la valeur  -> pour le "a"
+        
         
     }
 
@@ -82,7 +83,7 @@ public class Ball_Controls : MonoBehaviour
             Mycam.m_YAxis.m_MaxSpeed = 0;
         }
         
-        //mettre valeur de speed camera x et y  a zero
+        
         //recuperer la position de la souris
 
 
@@ -96,6 +97,8 @@ public class Ball_Controls : MonoBehaviour
         //recuperer la position de la souris 
         //ensuite, creer le vecteur allant de la premiere position de la souris a celle recupere a la ligne precedente
         //"force" sera la magnitude du vecteur recuperé avant
+        Debug.Log(a);
+
         if (!IsMove)
         { 
         var camForward = Camera.main.transform.forward;
@@ -107,9 +110,9 @@ public class Ball_Controls : MonoBehaviour
         Mycam.m_XAxis.m_MaxSpeed = 300; 
         Mycam.m_YAxis.m_MaxSpeed = 2;
 
-        Debug.Log(a);
+        
 
-        //remettre valeur de speed camera de x et y a la normal 
+        
 
 
 
