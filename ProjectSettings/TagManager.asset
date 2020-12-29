@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Ball
   - RT
+  - RespawnTrigger
+  - RepB
+  - RepF
+  - RepB2
+  - RepF2
+  - RespawnTrigger2
   layers:
   - Default
   - TransparentFX
