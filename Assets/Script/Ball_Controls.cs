@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using TMPro;
 
 public class Ball_Controls : MonoBehaviour
 {
@@ -25,8 +26,15 @@ public class Ball_Controls : MonoBehaviour
     private Vector2 Resolution; //correspond a la variable qui va contenir la resolution de l'ecran
     private Vector2 b;
     //test
-   
+    [SerializeField] private Transform ball;
+    [SerializeField] private Transform RespawnPoint;
+    [SerializeField] private Transform RespawnPoint2;
+    [SerializeField] private TextMeshProUGUI Question1;
+    [SerializeField] private TextMeshProUGUI Question2;
 
+
+    //[SerializeField] private Transform RespawnPoint3;
+    //[SerializeField] private Transform RespawnPoint4;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +42,9 @@ public class Ball_Controls : MonoBehaviour
         Resolution = new Vector2(Screen.width, Screen.height);
         //Debug.Log(Resolution);
         myRB = GetComponent<Rigidbody>();
-        
 
-        
+        Question2.GetComponent<TextMeshProUGUI>().enabled = false;
+
 
     }
 
@@ -124,11 +132,54 @@ public class Ball_Controls : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        //question1
+        if (other.CompareTag("RespawnTrigger"))
+        {
+            ball.transform.position = RespawnPoint.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
+        if (other.CompareTag("RepB"))
+        {
+            ball.transform.position = RespawnPoint2.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+            //Destroy(Question1);
+            Question1.GetComponent<TextMeshProUGUI>().enabled = false;
+            Question2.GetComponent<TextMeshProUGUI>().enabled = true;
+
+        }
+        if (other.CompareTag("RepF"))
+        {
+            ball.transform.position = RespawnPoint.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
+        //question2
+        if (other.CompareTag("RespawnTrigger2"))
+        {
+            ball.transform.position = RespawnPoint2.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
+        /*if (other.CompareTag("RespawnTrigger3"))
+        {
+            ball.transform.position = RespawnPoint3.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }*/
 
 
-  
+    }
 
-   
+
+
+
 
 
 }
