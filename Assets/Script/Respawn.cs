@@ -15,7 +15,7 @@ public class Respawn : MonoBehaviour
         {
             ball.transform.position = RespawnPoint.transform.position;
             Physics.SyncTransforms();
-            myRB1.myRB.velocity = Vector3.zero; // appelle de la variable myRB de la balle
+            myRB1.myRB.velocity = Vector3.zero; 
         }
     }
     

@@ -7,6 +7,7 @@ using Cinemachine;
 public class Ball_Controls : MonoBehaviour
 {
     [SerializeField] private float Gravity;
+    
 
     public Rigidbody myRB ;
     [SerializeField] CinemachineFreeLook Mycam;
@@ -14,7 +15,7 @@ public class Ball_Controls : MonoBehaviour
     //private Vector3 lookDirection ; //la direction dans laquelle la camera est orientée
 
     [SerializeField] float Force;
-    [SerializeField] float Force1;
+    private float Force1;
    
 
     private bool IsMove; //savoir si la balle est à l’arrêt ou pas
@@ -22,7 +23,9 @@ public class Ball_Controls : MonoBehaviour
     private Controls controls;
     private Vector2 a; // le point "a" correspond a la premiere postion de ma souris chaque frame
     private Vector2 Resolution; //correspond a la variable qui va contenir la resolution de l'ecran
-    private LineRenderer lr;
+    private Vector2 b;
+    //test
+   
 
 
     // Start is called before the first frame update
@@ -33,7 +36,7 @@ public class Ball_Controls : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
         
 
-        //RECUPERER VALEUR DE LA SPEED CAM X,Y ET STOCKER DANS VARIABLES CHACUNES -> a assigner apres 
+        
 
     }
 
@@ -45,7 +48,7 @@ public class Ball_Controls : MonoBehaviour
             IsMove = false;
         }
 
-
+        //Force1 = new Vector3(a, 0, b); 
     }
 
 
@@ -69,8 +72,11 @@ public class Ball_Controls : MonoBehaviour
         a.x = Mathf.Clamp(a.x, 0, 1);
         a.y = Mathf.Clamp(a.y, 0, 1);
         //Debug.Log(a);
-        
-        
+        b = obj.ReadValue<Vector2>(); // permet de lire la valeur de "a" 
+        b /= Resolution;
+        b.x = Mathf.Clamp(b.x, 0, 1);
+        b.y = Mathf.Clamp(b.y, 0, 1);
+
     }
 
     
@@ -85,11 +91,11 @@ public class Ball_Controls : MonoBehaviour
         
         
         //recuperer la position de la souris
-
-
         //vector faut les multiplier entre eux
 
         Debug.Log(a);
+
+       
     }
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
@@ -97,7 +103,7 @@ public class Ball_Controls : MonoBehaviour
         //recuperer la position de la souris 
         //ensuite, creer le vecteur allant de la premiere position de la souris a celle recupere a la ligne precedente
         //"force" sera la magnitude du vecteur recuperé avant
-        Debug.Log(a);
+        Debug.Log(b);
 
         if (!IsMove)
         { 
