@@ -167,7 +167,7 @@ public class Ball_Controls : MonoBehaviour
            var posAdvancedLengh = posAddForce.magnitude; equivaut a "var magnitude = Vector2.Distance(a, b);"
         */
 
-        var magnitude = Vector2.Distance(a, b);
+        var magnitude = Vector2.Distance(b, a);
 
         var camForward = Camera.main.transform.forward;
         var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
@@ -274,8 +274,8 @@ public class Ball_Controls : MonoBehaviour
             ball.transform.position = RespawnPoint5.transform.position;
             Physics.SyncTransforms();
             myRB.velocity = Vector3.zero;
-            Question3.GetComponent<TextMeshProUGUI>().enabled = false;
-            Question4.GetComponent<TextMeshProUGUI>().enabled = true;
+            Question4.GetComponent<TextMeshProUGUI>().enabled = false;
+            Question5.GetComponent<TextMeshProUGUI>().enabled = true;
         }
 
         if (other.CompareTag("RepF4"))
@@ -284,12 +284,31 @@ public class Ball_Controls : MonoBehaviour
             Physics.SyncTransforms();
             myRB.velocity = Vector3.zero;
         }
-        /*if (other.CompareTag("RespawnTrigger3"))
+
+        //question5
+        if (other.CompareTag("RespawnTrigger5"))
         {
-            ball.transform.position = RespawnPoint3.transform.position;
+            ball.transform.position = RespawnPoint5.transform.position;
             Physics.SyncTransforms();
             myRB.velocity = Vector3.zero;
-        }*/
+        }
+
+        if (other.CompareTag("RepB5"))
+        {
+            ball.transform.position = RespawnPoint6.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+            Question5.GetComponent<TextMeshProUGUI>().enabled = false;
+            Question6.GetComponent<TextMeshProUGUI>().enabled = true;
+        }
+
+        if (other.CompareTag("RepF5"))
+        {
+            ball.transform.position = RespawnPoint5.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
 
 
     }

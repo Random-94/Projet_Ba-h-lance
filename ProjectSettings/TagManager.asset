@@ -24,6 +24,8 @@ TagManager:
   - RepF3
   - RepF4
   - RepB4
+  - RepB5
+  - RepF5
   layers:
   - Default
   - TransparentFX
