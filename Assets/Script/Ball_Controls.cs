@@ -25,6 +25,8 @@ public class Ball_Controls : MonoBehaviour
     private Vector2 mousePos; // le point "a" correspond a la premiere postion de ma souris chaque frame
     private Vector2 Resolution; //correspond a la variable qui va contenir la resolution de l'ecran
     private Vector2 a, b;
+
+    private bool CamMove;
     
     //question
     [SerializeField] private Transform ball;
@@ -68,6 +70,8 @@ public class Ball_Controls : MonoBehaviour
         Question9.GetComponent<TextMeshProUGUI>().enabled = false;
         Question10.GetComponent<TextMeshProUGUI>().enabled = false;
 
+
+        CamMove = false;
     }
 
     // Update is called once per frame
@@ -78,7 +82,17 @@ public class Ball_Controls : MonoBehaviour
             IsMove = false;
         }
 
-        //Force1 = new Vector3(a, 0, b); 
+        if(!CamMove)
+        {
+            Mycam.m_XAxis.m_MaxSpeed = 0;
+            Mycam.m_YAxis.m_MaxSpeed = 0;
+        }
+        else if(CamMove)
+        {
+            Mycam.m_XAxis.m_MaxSpeed = 120; 
+            Mycam.m_YAxis.m_MaxSpeed = 1.5f;
+        }
+
     }
 
 
@@ -87,11 +101,14 @@ public class Ball_Controls : MonoBehaviour
         controls = new Controls();
         controls.Enable();
 
-        controls.Ball.Aim.performed += OnAimPerformed; //position souris
-        
+        controls.Ball.Aim.performed += OnAimPerformed; //position souris 
+        controls.Ball.Cam.performed += OnCamPerformed;
+        controls.Ball.Cam.canceled += OnCamCanceled;
         controls.Ball.Shoot.performed += OnShootPerformed;
         controls.Ball.Shoot.canceled += OnShootCanceled;
         
+
+
     }
 
     private void OnAimPerformed(InputAction.CallbackContext obj)
@@ -109,19 +126,31 @@ public class Ball_Controls : MonoBehaviour
 
     }
 
-    
+    private void OnCamPerformed(InputAction.CallbackContext obj)
+    {
+        
+        CamMove = true;
+
+    }
+
+    private void OnCamCanceled(InputAction.CallbackContext obj)
+    {
+
+        CamMove = false;
+
+    }
+
 
     private void OnShootPerformed(InputAction.CallbackContext obj)
     {
-        if(!IsMove)
+        /*if(!IsMove)
         {
             Mycam.m_XAxis.m_MaxSpeed = 0;
             Mycam.m_YAxis.m_MaxSpeed = 0;
         }
-        a = mousePos;
+        a = mousePos;*/
         
-        //recuperer la position de la souris
-        //vector faut les multiplier entre eux
+        
 
         Debug.Log(mousePos);
 
@@ -130,9 +159,7 @@ public class Ball_Controls : MonoBehaviour
 
     private void OnShootCanceled(InputAction.CallbackContext obj)
     {
-        //recuperer la position de la souris 
-        //ensuite, creer le vecteur allant de la premiere position de la souris a celle recupere a la ligne precedente
-        //"force" sera la magnitude du vecteur recuperé avant
+        
 
         b = mousePos;
         /*
@@ -148,8 +175,8 @@ public class Ball_Controls : MonoBehaviour
         IsMove = true;
         
         
-        Mycam.m_XAxis.m_MaxSpeed = 300; 
-        Mycam.m_YAxis.m_MaxSpeed = 2;
+        //Mycam.m_XAxis.m_MaxSpeed = 300; 
+        //Mycam.m_YAxis.m_MaxSpeed = 2;
         Debug.Log(b);
 
 
@@ -210,6 +237,53 @@ public class Ball_Controls : MonoBehaviour
             myRB.velocity = Vector3.zero;
         }
 
+        //question3
+        if (other.CompareTag("RespawnTrigger3"))
+        {
+            ball.transform.position = RespawnPoint3.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
+        if (other.CompareTag("RepB3"))
+        {
+            ball.transform.position = RespawnPoint4.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+            Question3.GetComponent<TextMeshProUGUI>().enabled = false;
+            Question4.GetComponent<TextMeshProUGUI>().enabled = true;
+        }
+
+        if (other.CompareTag("RepF3"))
+        {
+            ball.transform.position = RespawnPoint3.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
+        //question4
+        if (other.CompareTag("RespawnTrigger4"))
+        {
+            ball.transform.position = RespawnPoint4.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
+
+        if (other.CompareTag("RepB4"))
+        {
+            ball.transform.position = RespawnPoint5.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+            Question3.GetComponent<TextMeshProUGUI>().enabled = false;
+            Question4.GetComponent<TextMeshProUGUI>().enabled = true;
+        }
+
+        if (other.CompareTag("RepF4"))
+        {
+            ball.transform.position = RespawnPoint4.transform.position;
+            Physics.SyncTransforms();
+            myRB.velocity = Vector3.zero;
+        }
         /*if (other.CompareTag("RespawnTrigger3"))
         {
             ball.transform.position = RespawnPoint3.transform.position;

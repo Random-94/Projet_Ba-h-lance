@@ -12,6 +12,18 @@ TagManager:
   - RepB2
   - RepF2
   - RespawnTrigger2
+  - RespawnTrigger3
+  - RespawnTrigger4
+  - RespawnTrigger5
+  - RespawnTrigger6
+  - RespawnTrigger7
+  - RespawnTrigger8
+  - RespawnTrigger9
+  - RespawnTrigger10
+  - RepB3
+  - RepF3
+  - RepF4
+  - RepB4
   layers:
   - Default
   - TransparentFX

@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cam"",
+                    ""type"": ""Value"",
+                    ""id"": ""6d25425f-04c7-4be8-8e4c-87012cc5bbb0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Delta"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b881c62-29fb-41de-9e73-f96909e8b4c4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -87,6 +106,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Ball_Aim = m_Ball.FindAction("Aim", throwIfNotFound: true);
         m_Ball_Shoot = m_Ball.FindAction("Shoot", throwIfNotFound: true);
         m_Ball_Delta = m_Ball.FindAction("Delta", throwIfNotFound: true);
+        m_Ball_Cam = m_Ball.FindAction("Cam", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,6 +159,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Ball_Aim;
     private readonly InputAction m_Ball_Shoot;
     private readonly InputAction m_Ball_Delta;
+    private readonly InputAction m_Ball_Cam;
     public struct BallActions
     {
         private @Controls m_Wrapper;
@@ -146,6 +167,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_Ball_Aim;
         public InputAction @Shoot => m_Wrapper.m_Ball_Shoot;
         public InputAction @Delta => m_Wrapper.m_Ball_Delta;
+        public InputAction @Cam => m_Wrapper.m_Ball_Cam;
         public InputActionMap Get() { return m_Wrapper.m_Ball; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +186,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Delta.started -= m_Wrapper.m_BallActionsCallbackInterface.OnDelta;
                 @Delta.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnDelta;
                 @Delta.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnDelta;
+                @Cam.started -= m_Wrapper.m_BallActionsCallbackInterface.OnCam;
+                @Cam.performed -= m_Wrapper.m_BallActionsCallbackInterface.OnCam;
+                @Cam.canceled -= m_Wrapper.m_BallActionsCallbackInterface.OnCam;
             }
             m_Wrapper.m_BallActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Delta.started += instance.OnDelta;
                 @Delta.performed += instance.OnDelta;
                 @Delta.canceled += instance.OnDelta;
+                @Cam.started += instance.OnCam;
+                @Cam.performed += instance.OnCam;
+                @Cam.canceled += instance.OnCam;
             }
         }
     }
@@ -186,5 +214,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnDelta(InputAction.CallbackContext context);
+        void OnCam(InputAction.CallbackContext context);
     }
 }
