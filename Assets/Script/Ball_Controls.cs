@@ -90,8 +90,8 @@ public class Ball_Controls : MonoBehaviour
         }
         else if(CamMove)
         {
-            Mycam.m_XAxis.m_MaxSpeed = 120; 
-            Mycam.m_YAxis.m_MaxSpeed = 1.5f;
+            Mycam.m_XAxis.m_MaxSpeed = 150; 
+            Mycam.m_YAxis.m_MaxSpeed = 1.3f;
         }
 
     }

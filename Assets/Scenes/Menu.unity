@@ -1467,7 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Chargement: {fileID: 8213308686126634886, guid: 72fb1b3b998b1cb4ea16a9065e8d8b70, type: 3}
-  SceneToLoad: Credits
+  SceneToLoad: Credit
 --- !u!4 &2099389715
 Transform:
   m_ObjectHideFlags: 0
