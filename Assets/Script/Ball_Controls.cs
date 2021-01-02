@@ -56,6 +56,7 @@ public class Ball_Controls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         Resolution = new Vector2(Screen.width, Screen.height);
         //Debug.Log(Resolution);
         myRB = GetComponent<Rigidbody>();
