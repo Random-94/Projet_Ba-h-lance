@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Ball_Controls : MonoBehaviour
 {
@@ -35,21 +36,21 @@ public class Ball_Controls : MonoBehaviour
     [SerializeField] private Transform RespawnPoint3;
     [SerializeField] private Transform RespawnPoint4;
     [SerializeField] private Transform RespawnPoint5;
-    [SerializeField] private Transform RespawnPoint6;
+    /*[SerializeField] private Transform RespawnPoint6;
     [SerializeField] private Transform RespawnPoint7;
     [SerializeField] private Transform RespawnPoint8;
     [SerializeField] private Transform RespawnPoint9;
-    [SerializeField] private Transform RespawnPoint10;
+    [SerializeField] private Transform RespawnPoint10;*/
     [SerializeField] private TextMeshProUGUI Question1;
     [SerializeField] private TextMeshProUGUI Question2;
     [SerializeField] private TextMeshProUGUI Question3;
     [SerializeField] private TextMeshProUGUI Question4;
     [SerializeField] private TextMeshProUGUI Question5;
-    [SerializeField] private TextMeshProUGUI Question6;
+    /*[SerializeField] private TextMeshProUGUI Question6;
     [SerializeField] private TextMeshProUGUI Question7;
     [SerializeField] private TextMeshProUGUI Question8;
     [SerializeField] private TextMeshProUGUI Question9;
-    [SerializeField] private TextMeshProUGUI Question10;
+    [SerializeField] private TextMeshProUGUI Question10;*/
 
     
 
@@ -65,11 +66,11 @@ public class Ball_Controls : MonoBehaviour
         Question3.GetComponent<TextMeshProUGUI>().enabled = false;
         Question4.GetComponent<TextMeshProUGUI>().enabled = false;
         Question5.GetComponent<TextMeshProUGUI>().enabled = false;
-        Question6.GetComponent<TextMeshProUGUI>().enabled = false;
+        /*Question6.GetComponent<TextMeshProUGUI>().enabled = false;
         Question7.GetComponent<TextMeshProUGUI>().enabled = false;
         Question8.GetComponent<TextMeshProUGUI>().enabled = false;
         Question9.GetComponent<TextMeshProUGUI>().enabled = false;
-        Question10.GetComponent<TextMeshProUGUI>().enabled = false;
+        Question10.GetComponent<TextMeshProUGUI>().enabled = false;*/
 
 
         CamMove = false;
@@ -90,7 +91,7 @@ public class Ball_Controls : MonoBehaviour
         }
         else if(CamMove)
         {
-            Mycam.m_XAxis.m_MaxSpeed = 150; 
+            Mycam.m_XAxis.m_MaxSpeed = 130; 
             Mycam.m_YAxis.m_MaxSpeed = 1.3f;
         }
 
@@ -148,8 +149,8 @@ public class Ball_Controls : MonoBehaviour
         {
             Mycam.m_XAxis.m_MaxSpeed = 0;
             Mycam.m_YAxis.m_MaxSpeed = 0;
-        }
-        a = mousePos;*/
+        }*/
+        a = mousePos;
         
         
 
@@ -296,11 +297,7 @@ public class Ball_Controls : MonoBehaviour
 
         if (other.CompareTag("RepB5"))
         {
-            ball.transform.position = RespawnPoint6.transform.position;
-            Physics.SyncTransforms();
-            myRB.velocity = Vector3.zero;
-            Question5.GetComponent<TextMeshProUGUI>().enabled = false;
-            Question6.GetComponent<TextMeshProUGUI>().enabled = true;
+            SceneManager.LoadScene("Fin", LoadSceneMode.Single);
         }
 
         if (other.CompareTag("RepF5"))
