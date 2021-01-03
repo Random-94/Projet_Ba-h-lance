@@ -168,7 +168,7 @@ public class Ball_Controls : MonoBehaviour
            var posAdvancedLengh = posAddForce.magnitude; equivaut a "var magnitude = Vector2.Distance(a, b);"
         */
 
-        var magnitude = Vector2.Distance(b, a);
+        var magnitude = Vector2.Distance(a, b);
 
         var camForward = Camera.main.transform.forward;
         var camDir = new Vector3(camForward.x, 0.0f, camForward.z);
